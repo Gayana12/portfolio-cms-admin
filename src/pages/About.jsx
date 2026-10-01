@@ -5,7 +5,7 @@ import ImageUpload from '../components/ImageUpload';
 
 const empty = {
   fullName: '', headline: '', bio: '', profileImageUrl: '', resumeUrl: '',
-  email: '', phone: '', location: '', githubUrl: '', linkedinUrl: '', twitterUrl: '',
+  email: '', phone: '', location: '', githubUrl: '', linkedinUrl: '',
 };
 
 export default function About() {
@@ -39,11 +39,11 @@ export default function About() {
 
   if (loading) return <p>Loading...</p>;
 
-  const fields = [
+    const fields = [
     ['fullName', 'Full Name'], ['headline', 'Headline'], ['email', 'Email'],
     ['phone', 'Phone'], ['location', 'Location'],
     ['resumeUrl', 'Resume URL'], ['githubUrl', 'GitHub URL'],
-    ['linkedinUrl', 'LinkedIn URL'], ['twitterUrl', 'Twitter URL'],
+    ['linkedinUrl', 'LinkedIn URL'],
   ];
 
   return (

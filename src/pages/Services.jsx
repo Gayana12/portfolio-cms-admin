@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../api/client';
 import StatusMessage from '../components/StatusMessage';
 
-const empty = { title: '', description: '', icon: '', displayOrder: 0 };
+const empty = { title: '', description: '', icon: '' };
 
 export default function Services() {
   const [items, setItems] = useState([]);
@@ -16,7 +16,7 @@ export default function Services() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: name === 'displayOrder' ? Number(value) : value });
+    setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -37,7 +37,7 @@ export default function Services() {
   };
 
   const handleEdit = (s) => {
-    setForm({ title: s.title, description: s.description || '', icon: s.icon || '', displayOrder: s.displayOrder || 0 });
+    setForm({ title: s.title, description: s.description || '', icon: s.icon || '' });
     setEditingId(s.id);
   };
 
@@ -62,14 +62,7 @@ export default function Services() {
         <div className="grid grid-cols-2 gap-3 mb-3">
           <input name="title" placeholder="Title" value={form.title} onChange={handleChange} className="border rounded px-3 py-2 col-span-2" required />
           <textarea name="description" placeholder="Description" value={form.description} onChange={handleChange} rows={3} className="border rounded px-3 py-2 col-span-2" />
-            <div>
-            <label className="block text-xs text-gray-500 mb-1">Icon Name</label>
-            <input name="icon" placeholder="e.g. code, design, camera" value={form.icon} onChange={handleChange} className="border rounded px-3 py-2 w-full" />
-          </div>
-          <div>
-            <label className="block text-xs text-gray-500 mb-1">Display Order</label>
-            <input name="displayOrder" type="number" value={form.displayOrder} onChange={handleChange} className="border rounded px-3 py-2 w-full" />
-          </div>
+          <input name="icon" placeholder="Icon name (e.g. code, design, camera)" value={form.icon} onChange={handleChange} className="border rounded px-3 py-2 col-span-2" />
         </div>
         <div className="flex gap-2">
           <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">

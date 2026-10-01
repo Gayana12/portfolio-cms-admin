@@ -3,7 +3,7 @@ import api from '../api/client';
 import StatusMessage from '../components/StatusMessage';
 import ImageUpload from '../components/ImageUpload';
 
-const empty = { authorName: '', authorRole: '', company: '', quote: '', avatarUrl: '', rating: 5, displayOrder: 0 };
+const empty = { authorName: '', authorRole: '', company: '', quote: '', avatarUrl: '', rating: 5 };
 
 export default function Testimonials() {
   const [items, setItems] = useState([]);
@@ -15,9 +15,9 @@ export default function Testimonials() {
 
   useEffect(() => { load(); }, []);
 
-  const handleChange = (e) => {
+    const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: name === 'rating' || name === 'displayOrder' ? Number(value) : value });
+    setForm({ ...form, [name]: name === 'rating' ? Number(value) : value });
   };
 
   const handleSubmit = async (e) => {
@@ -40,7 +40,7 @@ export default function Testimonials() {
   const handleEdit = (t) => {
     setForm({
       authorName: t.authorName, authorRole: t.authorRole || '', company: t.company || '',
-      quote: t.quote, avatarUrl: t.avatarUrl || '', rating: t.rating || 5, displayOrder: t.displayOrder || 0,
+      quote: t.quote, avatarUrl: t.avatarUrl || '', rating: t.rating || 5,
     });
     setEditingId(t.id);
   };
@@ -72,10 +72,6 @@ export default function Testimonials() {
             <input name="rating" type="number" min="1" max="5" value={form.rating} onChange={handleChange} className="border rounded px-3 py-2 w-full" />
           </div>
           <textarea name="quote" placeholder="Quote" value={form.quote} onChange={handleChange} rows={3} className="border rounded px-3 py-2 col-span-2" required />
-            <div>
-            <label className="block text-xs text-gray-500 mb-1">Display Order</label>
-            <input name="displayOrder" type="number" value={form.displayOrder} onChange={handleChange} className="border rounded px-3 py-2 w-full" />
-          </div>
           <div className="col-span-2">
             <ImageUpload
               label="Avatar"

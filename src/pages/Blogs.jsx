@@ -4,7 +4,7 @@ import StatusMessage from '../components/StatusMessage';
 import ImageUpload from '../components/ImageUpload';
 
 const empty = {
-  title: '', slug: '', excerpt: '', content: '', coverImageUrl: '', tags: '', published: false,
+  title: '', excerpt: '', content: '', coverImageUrl: '', tags: '', published: false,
 };
 
 export default function Blogs() {
@@ -45,7 +45,7 @@ export default function Blogs() {
 
   const handleEdit = (b) => {
     setForm({
-      title: b.title, slug: b.slug, excerpt: b.excerpt || '', content: b.content || '',
+      title: b.title, excerpt: b.excerpt || '', content: b.content || '',
       coverImageUrl: b.coverImageUrl || '', tags: (b.tags || []).join(', '), published: b.published,
     });
     setEditingId(b.id);
@@ -71,7 +71,6 @@ export default function Blogs() {
         <StatusMessage error={error} />
         <div className="space-y-3 mb-3">
           <input name="title" placeholder="Title" value={form.title} onChange={handleChange} className="w-full border rounded px-3 py-2" required />
-          <input name="slug" placeholder="Slug (leave blank to auto-generate)" value={form.slug} onChange={handleChange} className="w-full border rounded px-3 py-2" />
           <input name="excerpt" placeholder="Excerpt" value={form.excerpt} onChange={handleChange} className="w-full border rounded px-3 py-2" />
           <textarea name="content" placeholder="Content" value={form.content} onChange={handleChange} rows={6} className="w-full border rounded px-3 py-2" />
           <ImageUpload
