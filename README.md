@@ -1,16 +1,36 @@
-# React + Vite
+﻿# Portfolio CMS Admin Panel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React admin dashboard for managing content in the Portfolio CMS backend.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React 19 + Vite
+- Tailwind CSS
+- React Router
+- Axios (with JWT auto-attach and auto-refresh interceptors)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- JWT login with automatic access-token refresh using the stored refresh token
+- Sidebar navigation across all content sections
+- Full CRUD screens for: About, Skills, Projects, Blogs, Experience, Testimonials, Services
+- Image upload control with two modes: upload a file, or paste an external image URL
+- Draft/published toggle for Projects and Blogs, with admin-only draft visibility
 
-## React Compiler
+## Running locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Make sure the backend (portfolio-cms) is running at http://localhost:8080.
+2. Install dependencies:
+   npm install
+3. Start the dev server:
+   npm run dev
+4. Open http://localhost:5173 and log in with the backend's admin credentials
+   (default: admin@portfolio.com / Admin@123, unless changed via env vars on the backend).
 
-## Expanding the ESLint configuration
+## Project Structure
+- src/api/client.js - Axios instance with JWT interceptors
+- src/context/AuthContext.jsx - login/logout state
+- src/components/ - shared UI (Layout, ImageUpload, StatusMessage)
+- src/pages/ - one screen per content type
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Related repos
+- Backend (Spring Boot): portfolio-cms
+- Public portfolio (Next.js): portfolio-site
